@@ -8,9 +8,10 @@ import messageRoutes from "./routes/messageRoutes.js";
 import gameRoutes from "./routes/gameRoutes.js";
 import { v2 as cloudinary } from "cloudinary";
 import path from "path";
-
+import fs from "fs";
 import { app, server } from "./socket/socket.js";
-
+import { fileURLToPath } from "url";
+import cors from "cors";
 //to use the import syntax we changed the type to module
 //to use the import syntax we changed the type to module
 //instead of using require
