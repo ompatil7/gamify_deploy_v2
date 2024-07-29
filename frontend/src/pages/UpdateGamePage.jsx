@@ -15,6 +15,7 @@ import useShowToast from "../hooks/useShowToast";
 import useGetUserProfile from "../hooks/useGetUserProfile";
 import UpdateGameModal from "../components/UpdateGameModal";
 import PlayGameModal from "../components/PlayGameModal";
+import { baseUrl } from "../url";
 
 const UpdateGamePage = () => {
   const { user, refetch } = useGetUserProfile();
@@ -26,7 +27,7 @@ const UpdateGamePage = () => {
 
   const fetchGames = useCallback(async () => {
     try {
-      const res = await fetch(`/api/games/allnames`);
+      const res = await fetch(`${baseUrl}/api/games/allnames`);
       const data = await res.json();
       if (data.error) {
         showToast("Error", data.error, "error");
@@ -46,7 +47,7 @@ const UpdateGamePage = () => {
     }
 
     try {
-      const endpoint = "/api/users/remove-status";
+      const endpoint = `${baseUrl}/api/users/remove-status`;
       const payload = { gameId: game.gameId };
 
       const res = await fetch(endpoint, {
@@ -77,7 +78,7 @@ const UpdateGamePage = () => {
 
   const handlePlaySubmit = async () => {
     try {
-      const endpoint = "/api/users/set-status";
+      const endpoint = `${baseUrl}/api/users/set-status`;
       const payload = { gameId: currentGame.gameId, playDuration };
 
       const res = await fetch(endpoint, {

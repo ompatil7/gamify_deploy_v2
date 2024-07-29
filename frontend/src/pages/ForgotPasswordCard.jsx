@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { useState } from "react";
+import { baseUrl } from "../url";
 
 function ForgotPasswordCard() {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ function ForgotPasswordCard() {
     try {
       // Send a request to your backend to initiate the password reset process
       // You may need to add a new API route for this purpose
-      const res = await fetch("/api/users/forgot-password", {
+      const res = await fetch(`${baseUrl}/api/users/forgot-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

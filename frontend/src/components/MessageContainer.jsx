@@ -23,6 +23,7 @@ import { useSocket } from "../context/SocketContext";
 import { useNavigate } from "react-router-dom";
 
 import msgSound from "../assests/sounds/message.mp3";
+import { baseUrl } from "../url";
 
 const MessageContainer = () => {
   const selectedConversation = useRecoilValue(selectedConversationAtom);
@@ -144,7 +145,9 @@ const MessageContainer = () => {
       setMessages([]);
       try {
         if (selectedConversation.mock) return;
-        const res = await fetch(`/api/messages/${selectedConversation.userId}`);
+        const res = await fetch(
+          `${baseUrl}/api/messages/${selectedConversation.userId}`
+        );
         const data = await res.json();
 
         if (data.error) {

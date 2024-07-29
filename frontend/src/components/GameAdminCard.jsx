@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  baseTheme,
   Button,
   Flex,
   Image,
@@ -10,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import useShowToast from "../hooks/useShowToast";
 import { DeleteIcon } from "@chakra-ui/icons";
+import { baseUrl } from "../url";
 
 const GameAdminCard = ({ game, games, setGames }) => {
   const showToast = useShowToast();
@@ -19,7 +21,7 @@ const GameAdminCard = ({ game, games, setGames }) => {
     if (!window.confirm("Are you sure you want to delete this game?")) return;
 
     try {
-      const res = await fetch(`/api/games/delete/${game._id}`, {
+      const res = await fetch(`${baseUrl}}/api/games/delete/${game._id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

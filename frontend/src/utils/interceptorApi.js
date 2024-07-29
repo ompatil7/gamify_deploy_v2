@@ -2,9 +2,10 @@
 import axios from "axios";
 import { clearAuthData } from "./utils/authUtils";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../url";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: `${baseUrl}/api`,
   withCredentials: true, // Important to send cookies with requests
 });
 

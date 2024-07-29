@@ -14,6 +14,7 @@ import {
 import { CloseIcon } from "@chakra-ui/icons";
 import axios from "axios";
 import UserProfile from "./UserProfile"; // Import the UserProfile component
+import { baseUrl } from "../url";
 
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -44,7 +45,7 @@ const SearchPage = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `/api/users/search?query=${debouncedSearchTerm}`
+          `${baseUrl}/api/users/search?query=${debouncedSearchTerm}`
         );
         setSearchResults(response.data);
         setLoading(false);

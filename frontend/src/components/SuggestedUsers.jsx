@@ -2,6 +2,7 @@ import { Text, Flex, Box, SkeletonCircle, Skeleton } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import SuggestedUser from "./SuggestedUser";
 import useShowToast from "../hooks/useShowToast";
+import { baseUrl } from "../url";
 const SuggestedUsers = () => {
   const [loading, setLoading] = useState(true);
   const [suggestedUsers, setSuggestedUsers] = useState([]);
@@ -10,7 +11,7 @@ const SuggestedUsers = () => {
   useEffect(() => {
     const getSuggestedUsers = async () => {
       try {
-        const res = await fetch("/api/users/suggested");
+        const res = await fetch(`${baseUrl}/api/users/suggested`);
         const data = await res.json();
         if (data.error) {
           showToast("Error", data.message, "error");

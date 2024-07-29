@@ -18,6 +18,7 @@ import {
 import GameUser from "../components/GameUser";
 import useShowToast from "../hooks/useShowToast";
 import { useParams } from "react-router-dom";
+import { baseUrl } from "../url";
 
 const GamePage = () => {
   const [loading, setLoading] = useState(true);
@@ -30,7 +31,7 @@ const GamePage = () => {
     const getSingleGame = async () => {
       setLoading(true); // Ensure loading state is set when the request starts
       try {
-        const res = await fetch(`/api/games/${game}`);
+        const res = await fetch(`${baseUrl}/api/games/${game}`);
         const data = await res.json();
         if (data.error) {
           showToast("Error", data.error, "error");

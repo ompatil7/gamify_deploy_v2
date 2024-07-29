@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { baseUrl } from "../url";
 
 function ResetPassword() {
   const { token } = useParams(); // get token from URL parameters
@@ -36,7 +37,7 @@ function ResetPassword() {
 
     setLoading(true);
     try {
-      const res = await fetch(`/api/users/reset-password/${token}`, {
+      const res = await fetch(`${baseUrl}/api/users/reset-password/${token}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

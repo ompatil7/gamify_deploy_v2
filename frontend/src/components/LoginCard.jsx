@@ -22,6 +22,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useSetRecoilState } from "recoil";
 import authScreenAtom from "../atoms/authAtom";
 import userAtom from "../atoms/userAtom";
+import { baseUrl } from "../url";
 
 function LoginCard() {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,7 +38,7 @@ function LoginCard() {
   const handleLogin = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/users/login", {
+      const res = await fetch(`${baseUrl}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

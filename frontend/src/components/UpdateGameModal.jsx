@@ -17,6 +17,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import useShowToast from "../hooks/useShowToast";
+import { baseUrl } from "../url";
 
 const UpdateGameModal = ({ games, onGameUpdate }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,7 +30,7 @@ const UpdateGameModal = ({ games, onGameUpdate }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`/api/users/addgame`, {
+      const res = await fetch(`${baseUrl}/api/users/addgame`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

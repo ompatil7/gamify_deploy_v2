@@ -19,7 +19,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import userAtom from "../atoms/userAtom";
 import useShowToast from "../hooks/useShowToast";
 import postsAtom from "../atoms/postsAtom";
-
+import { baseUrl } from "../url.js";
 const Actions = ({ post }) => {
   const user = useRecoilValue(userAtom);
   const [liked, setLiked] = useState(post.likes.includes(user?._id));
@@ -41,7 +41,7 @@ const Actions = ({ post }) => {
     if (isLiking) return;
     setIsLiking(true);
     try {
-      const res = await fetch("/api/posts/like/" + post._id, {
+      const res = await fetch(`${baseUrl}/api/posts/like/` + post._id, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

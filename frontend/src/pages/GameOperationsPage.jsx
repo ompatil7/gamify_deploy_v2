@@ -4,6 +4,7 @@ import { Divider, Heading, Stack, useColorModeValue } from "@chakra-ui/react";
 import AddGame from "../components/AddGame"; // Adjust the import path as needed
 import useShowToast from "../hooks/useShowToast";
 import GameAdminCard from "../components/GameAdminCard";
+import { baseUrl } from "../url";
 
 const GameOperationsPage = () => {
   const [games, setGames] = useState([]);
@@ -11,7 +12,7 @@ const GameOperationsPage = () => {
 
   const fetchGames = async () => {
     try {
-      const res = await fetch("/api/games/all");
+      const res = await fetch(`${baseUrl}/api/games/all`);
       const data = await res.json();
       if (data.error) {
         showToast("Error", data.error, "error");

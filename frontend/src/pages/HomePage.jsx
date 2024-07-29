@@ -6,6 +6,7 @@ import Post from "../components/Post";
 import SuggestedUsers from "../components/SuggestedUsers";
 import useShowToast from "../hooks/useShowToast";
 import { clearAuthData } from "../utils/clearAuthData";
+import { baseUrl } from "../url";
 function HomePage() {
   const [posts, setPosts] = useRecoilState(postsAtom);
   const [loading, setLoading] = useState(true);
@@ -19,7 +20,7 @@ function HomePage() {
     async (page) => {
       setLoading(true);
       try {
-        const res = await fetch(`/api/posts/feed?page=${page}`);
+        const res = await fetch(`${baseUrl}/api/posts/feed?page=${page}`);
         if (res.status === 401) {
           clearAuthData();
           // Redirect to login page

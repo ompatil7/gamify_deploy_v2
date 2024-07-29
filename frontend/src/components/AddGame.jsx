@@ -24,6 +24,7 @@ import {
 import { BsFillImageFill } from "react-icons/bs";
 import useShowToast from "../hooks/useShowToast";
 import usePreviewImg from "../hooks/usePreviewImg";
+import { baseUrl } from "../url";
 
 const AddGame = ({ onGameAdded }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -57,7 +58,7 @@ const AddGame = ({ onGameAdded }) => {
         formData.append(`gifs`, gif);
       });
 
-      const res = await fetch("/api/games/add", {
+      const res = await fetch(`${baseUrl}/api/games/add`, {
         method: "POST",
         credentials: "include",
         body: formData,

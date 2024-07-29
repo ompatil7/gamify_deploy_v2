@@ -25,6 +25,7 @@ import {
 } from "../atoms/messagesAtom";
 import userAtom from "../atoms/userAtom";
 import { useSocket } from "../context/SocketContext";
+import { baseUrl } from "../url";
 
 const ChatPage = () => {
   // states
@@ -49,7 +50,7 @@ const ChatPage = () => {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await fetch("/api/messages/conversations");
+        const res = await fetch(`${baseUrl}/api/messages/conversations`);
 
         const data = await res.json();
         if (data.error) {
@@ -236,7 +237,7 @@ const ChatPage = () => {
       return;
     }
     try {
-      const res = await fetch(`/api/users/profile/${searchText}`);
+      const res = await fetch(`${baseUrl}/api/users/profile/${searchText}`);
       const searchedUser = await res.json();
 
       if (searchedUser.error) {

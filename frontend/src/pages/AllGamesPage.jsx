@@ -78,6 +78,7 @@ import {
 } from "@chakra-ui/react";
 import Game from "../components/Game";
 import useShowToast from "../hooks/useShowToast";
+import { baseUrl } from "../url";
 
 const AllGamesPage = () => {
   const [games, setGames] = useState([]);
@@ -87,7 +88,7 @@ const AllGamesPage = () => {
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const res = await fetch(`/api/games/all`);
+        const res = await fetch(`${baseUrl}/api/games/all`);
         const data = await res.json();
         if (data.error) {
           showToast("Error", data.error, "error");
