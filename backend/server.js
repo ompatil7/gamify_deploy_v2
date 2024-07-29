@@ -6,6 +6,8 @@ import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import gameRoutes from "./routes/gameRoutes.js";
+import session from "express-session";
+
 import { v2 as cloudinary } from "cloudinary";
 import path from "path";
 import fs from "fs";
