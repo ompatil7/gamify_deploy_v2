@@ -13,9 +13,11 @@ const server = http.createServer(app);
 //by using this we can handle any http request and also any socket io operation required
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000", //react app
+    origin: ["http://localhost:3000", "https://gamifyv2.vercel.app"],
     methods: ["GET", "POST"],
+    credentials: true,
   },
+  transports: ["websocket"],
 });
 
 export const getRecipientSocketId = (recipientId) => {

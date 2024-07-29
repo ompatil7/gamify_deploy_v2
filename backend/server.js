@@ -12,6 +12,16 @@ import path from "path";
 import { app, server } from "./socket/socket.js";
 
 //to use the import syntax we changed the type to module
+//to use the import syntax we changed the type to module
+//instead of using require
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Ensure the directory exists
+const tempDir = path.join(__dirname, "./public/temp");
+if (!fs.existsSync(tempDir)) {
+  fs.mkdirSync(tempDir, { recursive: true });
+}
 //instead of using require
 dotenv.config();
 connectDB();
@@ -25,6 +35,24 @@ cloudinary.config({
 
 //middlewares
 //middleware is a function that runs betrween req and resp
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://gamify-v2.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
+app.set("trust proxy", 1);
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://gamify-v2.vercel.app");
+  res.header("Access-Control-Allow-Credentials", true);
+
+  next();
+});
 
 //allows you to parse incoming data from request object, req.body
 app.use(express.json({ limit: "50mb" }));
@@ -37,6 +65,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //routes
+app.get("/", (req, res) => res.send("Express on render"));
+
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/messages", messageRoutes);
