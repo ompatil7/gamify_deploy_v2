@@ -58,10 +58,11 @@ export const SocketContextProvider = ({ children }) => {
   useEffect(() => {
     if (!user?._id) return;
 
-    const socket = io("http://localhost:5000", {
+    const socket = io("https://gamify-deploy-v2.onrender.com", {
       query: {
         userId: user?._id,
       },
+      transports: ["websocket"],
     });
     setSocket(socket);
 

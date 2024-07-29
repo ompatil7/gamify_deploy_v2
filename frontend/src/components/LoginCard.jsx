@@ -44,6 +44,7 @@ function LoginCard() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(inputs),
+        credentials: "include", // Ensure credentials are included
       });
       const data = await res.json();
 
