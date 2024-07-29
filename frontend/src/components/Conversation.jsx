@@ -31,6 +31,7 @@ const Conversation = ({ conversation, isOnline }) => {
       gap={4}
       alignItems={"center"}
       p={"1"}
+      width={{ base: "45vh", md: "20vh", lg: "50vh" }}
       _hover={{
         cursor: "pointer",
         bg: useColorModeValue("gray.600", "gray.dark"),
@@ -56,8 +57,9 @@ const Conversation = ({ conversation, isOnline }) => {
     >
       <WrapItem>
         <Avatar
+          width={{ base: "45vh", md: "20vh", lg: "50vh" }}
           size={{
-            base: "xs",
+            base: "md",
             sm: "sm",
             md: "md",
           }}
