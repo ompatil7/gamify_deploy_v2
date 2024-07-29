@@ -11,7 +11,10 @@ const SuggestedUsers = () => {
   useEffect(() => {
     const getSuggestedUsers = async () => {
       try {
-        const res = await fetch(`${baseUrl}/api/users/suggested`);
+        const res = await fetch(`${baseUrl}/api/users/suggested`, {
+          method: "GET",
+          credentials: "include", // Include credentials such as cookies
+        });
         const data = await res.json();
         if (data.error) {
           showToast("Error", data.message, "error");

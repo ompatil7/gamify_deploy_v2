@@ -31,7 +31,10 @@ const GamePage = () => {
     const getSingleGame = async () => {
       setLoading(true); // Ensure loading state is set when the request starts
       try {
-        const res = await fetch(`${baseUrl}/api/games/${game}`);
+        const res = await fetch(`${baseUrl}/api/games/${game}`, {
+          method: "GET",
+          credentials: "include",
+        });
         const data = await res.json();
         if (data.error) {
           showToast("Error", data.error, "error");

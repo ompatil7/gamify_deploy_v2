@@ -62,6 +62,7 @@ const CreatePost = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           postedBy: user._id,
           text: postText,

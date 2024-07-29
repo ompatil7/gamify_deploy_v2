@@ -20,7 +20,10 @@ function HomePage() {
     async (page) => {
       setLoading(true);
       try {
-        const res = await fetch(`${baseUrl}/api/posts/feed?page=${page}`);
+        const res = await fetch(`${baseUrl}/api/posts/feed?page=${page}`, {
+          method: "GET",
+          credentials: "include",
+        });
         if (res.status === 401) {
           clearAuthData();
           // Redirect to login page

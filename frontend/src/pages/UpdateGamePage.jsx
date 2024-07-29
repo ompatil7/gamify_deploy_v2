@@ -27,7 +27,10 @@ const UpdateGamePage = () => {
 
   const fetchGames = useCallback(async () => {
     try {
-      const res = await fetch(`${baseUrl}/api/games/allnames`);
+      const res = await fetch(`${baseUrl}/api/games/allnames`, {
+        method: "GET",
+        credentials: "include",
+      });
       const data = await res.json();
       if (data.error) {
         showToast("Error", data.error, "error");

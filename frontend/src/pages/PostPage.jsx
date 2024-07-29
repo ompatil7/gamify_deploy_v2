@@ -38,6 +38,7 @@ function PostPage() {
 
       const res = await fetch(`${baseUrl}/api/posts/${currentPost._id}`, {
         method: "DELETE",
+        credentials: "include",
       });
       const data = await res.json();
       if (data.error) {

@@ -88,7 +88,13 @@ const AllGamesPage = () => {
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const res = await fetch(`${baseUrl}/api/games/all`);
+        const res = await fetch(`${baseUrl}/api/games/all`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        });
         const data = await res.json();
         if (data.error) {
           showToast("Error", data.error, "error");

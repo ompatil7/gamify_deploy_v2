@@ -50,7 +50,9 @@ const ChatPage = () => {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await fetch(`${baseUrl}/api/messages/conversations`);
+        const res = await fetch(`${baseUrl}/api/messages/conversations`, {
+          credentials: "include",
+        });
 
         const data = await res.json();
         if (data.error) {
@@ -237,7 +239,10 @@ const ChatPage = () => {
       return;
     }
     try {
-      const res = await fetch(`${baseUrl}/api/users/profile/${searchText}`);
+      const res = await fetch(`${baseUrl}/api/users/profile/${searchText}`, {
+        method: "GET",
+        credentials: "include",
+      });
       const searchedUser = await res.json();
 
       if (searchedUser.error) {

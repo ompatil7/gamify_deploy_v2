@@ -52,6 +52,7 @@ export default function UpdateProfilePage() {
       const res = await fetch(`${baseUrl}/api/users/update/${user._id}`, {
         method: "PUT",
         body: formData,
+        credentials: "include",
       });
       const data = await res.json();
 

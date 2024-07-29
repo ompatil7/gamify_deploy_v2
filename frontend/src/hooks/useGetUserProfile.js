@@ -12,7 +12,10 @@ const useGetUserProfile = () => {
   const getUser = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${baseUrl}/api/users/profile/${username}`);
+      const res = await fetch(`${baseUrl}/api/users/profile/${username}`, {
+        method: "GET",
+        credentials: "include",
+      });
       const data = await res.json();
       // const res = await axios.get(`/api/users/profile/${username}`);
       console.log("1", data);

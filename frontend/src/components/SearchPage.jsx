@@ -45,7 +45,14 @@ const SearchPage = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `${baseUrl}/api/users/search?query=${debouncedSearchTerm}`
+          `${baseUrl}/api/users/search?query=${debouncedSearchTerm}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
         );
         setSearchResults(response.data);
         setLoading(false);

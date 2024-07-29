@@ -46,6 +46,7 @@ const Actions = ({ post }) => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       });
       const data = await res.json();
       if (data.error) return showToast("Error", data.error, "error");
@@ -88,11 +89,12 @@ const Actions = ({ post }) => {
     if (isReplying) return;
     setIsReplying(true);
     try {
-      const res = await fetch("/api/posts/reply/" + post._id, {
+      const res = await fetch(`${baseUrl}/api/posts/reply/` + post._id, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ text: reply }),
       });
       const data = await res.json();
