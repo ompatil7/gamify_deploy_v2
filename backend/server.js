@@ -6,7 +6,6 @@ import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import gameRoutes from "./routes/gameRoutes.js";
-import session from "express-session";
 
 import { v2 as cloudinary } from "cloudinary";
 import path from "path";
@@ -69,20 +68,6 @@ app.use(express.urlencoded({ extended: true }));
 
 //get cookie from request and set cookie in response
 app.use(cookieParser());
-
-// Session middleware
-app.use(
-  session({
-    secret: "2b10c961a2d1b2fbd6e9fbd9c8d4a2e7a8f7d8a9b3f9e2d2b1c2f4d3e5a6b7c8",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: true, // Use true if using HTTPS
-      httpOnly: true,
-      sameSite: "none", // Allows cross-site cookies
-    },
-  })
-);
 
 //routes
 app.get("/", (req, res) => res.send("Express on render"));
