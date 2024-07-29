@@ -7,12 +7,12 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "https://gamify-deploy-v2.onrender.com",
+        target: "https://gamify-deploy.onrender.com",
         changeOrigin: true,
         secure: true, // Change to true for HTTPS
       },
       "/socket.io": {
-        target: "https://gamify-deploy-v2.onrender.com",
+        target: "https://gamify-deploy.onrender.com",
         ws: true,
         changeOrigin: true,
         secure: true, // Change to true for HTTPS
