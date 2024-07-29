@@ -38,17 +38,14 @@ function LoginCard() {
   const handleLogin = async () => {
     setLoading(true);
     try {
-      const res = await fetch(
-        `https://gamify-deploy-v3.vercel.app/api/users/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(inputs),
-          credentials: "include", // Ensure credentials are included
-        }
-      );
+      const res = await fetch(`${baseUrl}/api/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputs),
+        credentials: "include", // Ensure credentials are included
+      });
       const data = await res.json();
 
       if (data.error) {

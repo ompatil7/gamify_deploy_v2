@@ -101,7 +101,7 @@ const loginUser = async (req, res) => {
     const { username, password } = req.body;
     //finding the user in the database
     const user = await User.findOne({ username });
-
+    req.session.user = { username }; // Set session
     const isPasswordCorrect = await bcrypt.compare(
       password,
       user?.password || ""
@@ -113,7 +113,7 @@ const loginUser = async (req, res) => {
 
     //if succcess
     generateTokenAndSetCookie(user._id, res);
-
+    console.log("Session:", req.session);
     res.status(200).json({
       _id: user._id,
       name: user.name,
