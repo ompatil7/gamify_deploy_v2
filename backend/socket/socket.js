@@ -13,7 +13,7 @@ const server = http.createServer(app);
 //by using this we can handle any http request and also any socket io operation required
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3000", "https://gamify-deploy-v3.vercel.app"],
+    origin: ["http://localhost:3000", "https://gamify-y1.vercel.app"],
     methods: ["GET", "POST"],
     credentials: true,
   },
