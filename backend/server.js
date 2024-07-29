@@ -38,7 +38,7 @@ cloudinary.config({
 //middleware is a function that runs betrween req and resp
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://gamify-v2.vercel.app",
+  "https://gamify-deploy-v3.vercel.app",
 ];
 
 app.use(
