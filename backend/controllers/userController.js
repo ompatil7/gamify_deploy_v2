@@ -289,7 +289,7 @@ const forgotPassword = async (req, res) => {
 
     await user.save();
 
-    const resetUrl = `http://localhost:3000/reset-password/${token}`;
+    const resetUrl = `https://gamify-v2.vercel.app/reset-password/${token}`;
     const message = `You are receiving this email because you (or someone else) have requested the reset of the password for your account. Please click on the following link, or paste this into your browser to complete the process:\n\n${resetUrl}\n\nIf you did not request this, please ignore this email and your password will remain unchanged.`;
 
     await sendEmail(user.email, "Password Reset", message);

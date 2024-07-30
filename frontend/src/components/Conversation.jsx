@@ -57,7 +57,7 @@ const Conversation = ({ conversation, isOnline }) => {
     >
       <WrapItem>
         <Avatar
-          width={{ base: "45vh", md: "20vh", lg: "50vh" }}
+          
           size={{
             base: "md",
             sm: "sm",
