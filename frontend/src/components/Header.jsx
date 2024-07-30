@@ -74,11 +74,6 @@ function Header() {
       </Link>
 
       <Flex alignItems="center" gap={6}>
-        <Tooltip label="Search" aria-label="Search tooltip">
-          <Link as={RouterLink} to="/search">
-            <BsSearch size={24} title="Search" />
-          </Link>
-        </Tooltip>
         <Tooltip label="Toggle theme" aria-label="Toggle theme tooltip">
           <IconButton
             aria-label="Toggle theme"
@@ -97,6 +92,11 @@ function Header() {
 
         {user && (
           <>
+            <Tooltip label="Search" aria-label="Search tooltip">
+              <Link as={RouterLink} to="/search">
+                <BsSearch size={24} title="Search" />
+              </Link>
+            </Tooltip>
             <Tooltip label="Games" aria-label="Games tooltip">
               <Link as={RouterLink} to="/games">
                 <IoGameController size={24} />

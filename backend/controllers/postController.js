@@ -145,39 +145,10 @@ const replyToPost = async (req, res) => {
     console.log("Error in replyToPost ", error.message);
   }
 };
-const getFeedPosts = async (req, res) => {
-  const PAGE_SIZE = 3; // Number of posts per page
-  const page = parseInt(req.query.page) || 1;
-
-  try {
-    const userId = req.user._id;
-    const user = await User.findById(userId);
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    const following = user.following;
-
-    // Finding posts of people we follow
-    const feedPosts = await Post.find({ postedBy: { $in: following } })
-      .sort({ createdAt: -1 })
-      .skip((page - 1) * PAGE_SIZE)
-      .limit(PAGE_SIZE);
-
-    const totalPosts = await Post.countDocuments({
-      postedBy: { $in: following },
-    });
-    const hasMore = page * PAGE_SIZE < totalPosts;
-
-    res.status(200).json({ posts: feedPosts, hasMore });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-    console.log("Error in getFeedPosts ", error.message);
-  }
-};
-
 // const getFeedPosts = async (req, res) => {
+//   const PAGE_SIZE = 3; // Number of posts per page
+//   const page = parseInt(req.query.page) || 1;
+
 //   try {
 //     const userId = req.user._id;
 //     const user = await User.findById(userId);
@@ -188,21 +159,50 @@ const getFeedPosts = async (req, res) => {
 
 //     const following = user.following;
 
-//     //finding posts of people we follow
-//     //finding by our(user) FOLLOWING ids to see if they hav posted
-//     const feedPosts = await Post.find({ postedBy: { $in: following } }).sort({
-//       createdAt: -1,
+//     // Finding posts of people we follow
+//     const feedPosts = await Post.find({ postedBy: { $in: following } })
+//       .sort({ createdAt: -1 })
+//       .skip((page - 1) * PAGE_SIZE)
+//       .limit(PAGE_SIZE);
+
+//     const totalPosts = await Post.countDocuments({
+//       postedBy: { $in: following },
 //     });
+//     const hasMore = page * PAGE_SIZE < totalPosts;
 
-//     res.status(200).json(feedPosts);
-//     //createdAt - 1 : sort in latest order, newest will come top
-
-//     //
+//     res.status(200).json({ posts: feedPosts, hasMore });
 //   } catch (error) {
 //     res.status(500).json({ error: error.message });
 //     console.log("Error in getFeedPosts ", error.message);
 //   }
 // };
+
+const getFeedPosts = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const following = user.following;
+
+    //finding posts of people we follow
+    //finding by our(user) FOLLOWING ids to see if they hav posted
+    const feedPosts = await Post.find({ postedBy: { $in: following } }).sort({
+      createdAt: -1,
+    });
+
+    res.status(200).json(feedPosts);
+    //createdAt - 1 : sort in latest order, newest will come top
+
+    //
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    console.log("Error in getFeedPosts ", error.message);
+  }
+};
 
 const getUserPosts = async (req, res) => {
   const { username } = req.params;
