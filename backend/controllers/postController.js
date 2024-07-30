@@ -187,7 +187,7 @@ const getFeedPosts = async (req, res) => {
     }
 
     const following = user.following;
-
+    //for commit
     //finding posts of people we follow
     //finding by our(user) FOLLOWING ids to see if they hav posted
     const feedPosts = await Post.find({ postedBy: { $in: following } }).sort({
