@@ -18,7 +18,10 @@ function HomePage() {
       setPosts([]);
 
       try {
-        const res = await fetch(`${baseUrl}/api/posts/feed`);
+        const res = await fetch(`${baseUrl}/api/posts/feed`, {
+          method: "GET",
+          credentials: "include",
+        });
         const data = await res.json();
 
         if (data.error) {
