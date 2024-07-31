@@ -83,39 +83,38 @@ function SignupCard() {
           p={8}
         >
           <Stack spacing={4}>
-            <HStack>
-              <Box>
-                <FormControl isRequired>
-                  <FormLabel>Full Name</FormLabel>
-                  <Input
-                    type="text"
-                    onChange={(e) =>
-                      setInputs({ ...inputs, name: e.target.value })
-                    }
-                    value={inputs.name}
-                  />
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl isRequired>
-                  Username{" "}
-                  <Box as="span" color="red.500">
-                    (used for login)
-                  </Box>
-                  <Input
-                    type="text"
-                    onChange={(e) =>
-                      // setInputs({ ...inputs, username: e.target.value })
-                      setInputs({
-                        ...inputs,
-                        username: sanitizeUsername(e.target.value),
-                      })
-                    }
-                    value={inputs.username}
-                  />
-                </FormControl>
-              </Box>
-            </HStack>
+            <Box>
+              <FormControl isRequired>
+                <FormLabel>Full Name</FormLabel>
+                <Input
+                  type="text"
+                  onChange={(e) =>
+                    setInputs({ ...inputs, name: e.target.value })
+                  }
+                  value={inputs.name}
+                />
+              </FormControl>
+            </Box>
+            <Box>
+              <FormControl isRequired>
+                Username{" "}
+                <Box as="span" color="red.500">
+                  (used for login)
+                </Box>
+                <Input
+                  type="text"
+                  onChange={(e) =>
+                    // setInputs({ ...inputs, username: e.target.value })
+                    setInputs({
+                      ...inputs,
+                      username: sanitizeUsername(e.target.value),
+                    })
+                  }
+                  value={inputs.username}
+                />
+              </FormControl>
+            </Box>
+
             <FormControl isRequired>
               <FormLabel>Email address</FormLabel>
               <Input
