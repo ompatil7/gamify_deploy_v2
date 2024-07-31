@@ -41,19 +41,26 @@ function Header() {
   };
 
   return (
-    // <Flex justifyContent={"space-between"} mt={6} mb="12" alignItems="center">
     <Flex
       justifyContent={"space-between"}
+      mt={6}
+      mb="12"
       alignItems="center"
-      position="fixed"
-      top={0}
-      left={0}
-      width="100%"
-      bg={useColorModeValue("white", "gray.800")}
-      zIndex={10}
-      p={4}
       boxShadow="md"
+      bg={useColorModeValue("white", "gray.800")}
     >
+      {/* // <Flex
+    //   justifyContent={"space-between"}
+    //   alignItems="center"
+    //   position="fixed"
+    //   top={0}
+    //   left={0}
+    //   width="100%"
+    //   bg={useColorModeV("white", "gray.800")}
+    //   zIndex={10}
+    //   p={4}
+    //   boxShadow="md"
+    // > */}
       {user && (
         <Tooltip label="Home" aria-label="Home tooltip">
           <Link as={RouterLink} to="/">
