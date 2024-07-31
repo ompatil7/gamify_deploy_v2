@@ -20,6 +20,7 @@ import GameOperationsPage from "./pages/GameOperationsPage";
 import { NotFound } from "./pages/NotFound";
 import ErrorBoundary from "./utils/ErrorBoundary";
 import SearchPage from "./components/SearchPage";
+import { useState } from "react";
 
 function App() {
   const user = useRecoilValue(userAtom);
