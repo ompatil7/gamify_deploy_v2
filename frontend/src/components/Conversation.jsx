@@ -31,7 +31,7 @@ const Conversation = ({ conversation, isOnline }) => {
       gap={4}
       alignItems={"center"}
       p={"1"}
-      width={{ base: "45vh", md: "20vh", lg: "50vh" }}
+      width={{ base: "45vh", md: "20vh", lg: "36vh" }}
       _hover={{
         cursor: "pointer",
         bg: useColorModeValue("gray.600", "gray.dark"),

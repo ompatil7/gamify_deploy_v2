@@ -78,6 +78,72 @@ const signUpUser = async (req, res) => {
       //passing response bcoz sending in response
       generateTokenAndSetCookie(newUser._id, res);
 
+      // Send welcome email
+      const welcomeEmailHtml = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+          <title>Welcome to Gamify</title>
+          <style>
+            body {
+              font-family: 'Roboto', sans-serif;
+              margin: 0;
+              padding: 0;
+              background-color: #f4f4f4;
+              text-align: center;
+            }
+            .container {
+              max-width: 600px;
+              margin: 0 auto;
+              background-color: #ffffff;
+              padding: 20px;
+              border-radius: 10px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+              font-family: 'Raleway', sans-serif;
+              color: #333333;
+            }
+            p {
+              color: #666666;
+              line-height: 1.6;
+            }
+            .button {
+              display: inline-block;
+              padding: 10px 20px;
+              margin-top: 20px;
+              font-size: 16px;
+              color: #ffffff;
+              background-color: #007bff;
+              border-radius: 5px;
+              text-decoration: none;
+            }
+            .footer {
+              margin-top: 20px;
+              font-size: 12px;
+              color: #999999;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <img src="https://gamify-deploy-v2.onrender.com/public/images/welcomeGamer.jpg" alt="Welcome Image" style="width: 100%; border-radius: 10px 10px 0 0;">
+            <h1>Welcome to Gamify, ${name}!</h1>
+            <p>We're excited to have you on board. Get connected with other gamers on the platform, add your games, and team up!</p>
+            <a href="https://gamify-v2.vercel.app" class="button">Get Started</a>
+            <div class="footer">
+              <p>If you did not sign up for this account, please ignore this email.</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `;
+
+      await sendEmail(email, "Welcome to Gamify!", welcomeEmailHtml);
+
       res.status(201).json({
         _id: newUser._id,
         name: newUser.name,

@@ -20,6 +20,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Ensure the directory exists
+// Serve static files from 'public' directory
+app.use("/public", express.static(path.join(__dirname, "public")));
 const tempDir = path.join(__dirname, "./public/temp");
 if (!fs.existsSync(tempDir)) {
   fs.mkdirSync(tempDir, { recursive: true });
