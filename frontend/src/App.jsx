@@ -23,9 +23,36 @@ import SearchPage from "./components/SearchPage";
 
 function App() {
   const user = useRecoilValue(userAtom);
+  const [isNoticeVisible, setIsNoticeVisible] = useState(true);
+
   // const { pathname } = useLocation();
   return (
     <ErrorBoundary>
+      <Box position={"relative"} w="full">
+        {isNoticeVisible && (
+          <Box
+            bg="yellow.300"
+            p={4}
+            color="black"
+            textAlign="center"
+            position="relative"
+          >
+            <Flex alignItems="center" justifyContent="center">
+              <Text>
+                If the page is not loading, please wait 50 seconds. The first
+                request is delayed by 50 seconds. If anything is not updating,
+                please refresh the page.
+              </Text>
+              <CloseButton
+                position="absolute"
+                right="8px"
+                top="8px"
+                onClick={() => setIsNoticeVisible(false)}
+              />
+            </Flex>
+          </Box>
+        )}
+      </Box>
       <Box position={"relative"} w="full">
         <Container maxW={{ base: "620px", md: "1200px" }}>
           <Header />

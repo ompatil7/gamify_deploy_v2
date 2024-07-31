@@ -367,6 +367,7 @@ const ChatPage = () => {
               <Flex alignItems={"center"} gap={2}>
                 <Input
                   placeholder="Search for a user"
+                  value={searchText}
                   onChange={handleInputChange}
                 />
                 <Button
