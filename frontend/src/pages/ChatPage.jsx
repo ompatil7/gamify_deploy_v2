@@ -302,6 +302,10 @@ const ChatPage = () => {
       setSearchingUser(false);
     }
   };
+  const handleInputChange = (e) => {
+    const value = e.target.value.toLowerCase().replace(/[^a-z0-9_.]/g, "");
+    setSearchText(value);
+  };
 
   return (
     <Box
@@ -363,7 +367,7 @@ const ChatPage = () => {
               <Flex alignItems={"center"} gap={2}>
                 <Input
                   placeholder="Search for a user"
-                  onChange={(e) => setSearchText(e.target.value)}
+                  onChange={handleInputChange}
                 />
                 <Button
                   size={"sm"}
@@ -418,8 +422,11 @@ const ChatPage = () => {
               height={"400px"}
             >
               <GiConversation size={100} />
-              <Text fontSize={20}>
-                Select a conversation to start messaging
+              <Text fontSize={20} textAlign="center">
+                Select a conversation to start messaging.
+                <br />
+                Note: To add a conversation, search for the correct username and
+                click the search icon. 😁
               </Text>
             </Flex>
           )}

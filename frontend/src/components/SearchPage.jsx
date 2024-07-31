@@ -65,13 +65,18 @@ const SearchPage = () => {
     fetchSearchResults();
   }, [debouncedSearchTerm]);
 
+  const handleInputChange = (e) => {
+    const value = e.target.value.toLowerCase().replace(/[^a-z0-9_.]/g, "");
+    setSearchTerm(value);
+  };
+
   return (
     <Box p={4} color={useColorModeValue("black", "white")}>
       <Heading mb={4}>Search</Heading>
       <Box display="flex" alignItems="center" mb={4}>
         <Input
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleInputChange}
           placeholder="Search"
           size="md"
         />
