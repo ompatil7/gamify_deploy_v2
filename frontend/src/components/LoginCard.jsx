@@ -35,6 +35,13 @@ function LoginCard() {
     password: "",
   });
   const toast = useToast();
+  const handleUsernameChange = (e) => {
+    const value = e.target.value.toLowerCase().replace(/[^a-z0-9_.]/g, "");
+    setInputs((inputs) => ({
+      ...inputs,
+      username: value,
+    }));
+  };
   const handleLogin = async () => {
     setLoading(true);
     try {
@@ -114,12 +121,13 @@ function LoginCard() {
                 <Input
                   type={showPassword ? "text" : "password"}
                   value={inputs.password}
-                  onChange={(e) =>
-                    setInputs((inputs) => ({
-                      ...inputs,
-                      password: e.target.value,
-                    }))
-                  }
+                  // onChange={(e) =>
+                  //   setInputs((inputs) => ({
+                  //     ...inputs,
+                  //     password: e.target.value,
+                  //   }))
+                  // }
+                  onChange={handleUsernameChange}
                 />
                 <InputRightElement h={"full"}>
                   <Button

@@ -35,6 +35,10 @@ function SignupCard() {
     password: "",
   });
 
+  const sanitizeUsername = (value) => {
+    return value.toLowerCase().replace(/[^a-z0-9._]/g, "");
+  };
+
   const showToast = useShowToast();
   const setUser = useSetRecoilState(userAtom);
   const handleSignup = async () => {
@@ -66,7 +70,7 @@ function SignupCard() {
 
   return (
     <Flex align={"center"} justify={"center"}>
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+      <Stack spacing={8} mx={"auto"} maxW={"xl"} width={"100%"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
             Sign up
@@ -94,11 +98,18 @@ function SignupCard() {
               </Box>
               <Box>
                 <FormControl isRequired>
-                  <FormLabel>UserName</FormLabel>
+                  Username{" "}
+                  <Box as="span" color="red.500">
+                    (used for login)
+                  </Box>
                   <Input
                     type="text"
                     onChange={(e) =>
-                      setInputs({ ...inputs, username: e.target.value })
+                      // setInputs({ ...inputs, username: e.target.value })
+                      setInputs({
+                        ...inputs,
+                        username: sanitizeUsername(e.target.value),
+                      })
                     }
                     value={inputs.username}
                   />
