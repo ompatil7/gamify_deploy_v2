@@ -26,55 +26,40 @@ const UserProfile = ({ user }) => {
       cursor="pointer"
     >
       <Flex
-        direction={{ base: "column", md: "column", sm: "row" }}
+        direction={{ base: "column", md: "row" }}
         justify={"space-between"}
         align={"center"}
-        gap={{ md: 4, sm: 0 }}
+        gap={4}
       >
-        <Flex
-          direction={{ base: "row", md: "row" }}
-          justifyContent="space-between"
-          align="center"
-        >
-          <Flex
-            align="center"
-            direction={{ base: "row", md: "row" }}
-            flex={1}
-            gap={3}
-          >
-            <Avatar
+        <Flex align="center" flex={1} gap={4}>
+          <Avatar
+            as={Link}
+            to={`/${user.username}`}
+            src={user.profilePic}
+            size="lg"
+          />
+          <Stack spacing={1}>
+            <Text
+              fontWeight="bold"
+              fontSize="lg"
               as={Link}
               to={`/${user.username}`}
-              src={user.profilePic}
-              size={{ md: "xl", sm: "lg" }}
-            />
-            <Stack
-              spacing={2}
-              textAlign={{ base: "left", md: "left" }}
-              flex={1}
             >
-              <Text
-                fontWeight="bold"
-                fontSize="lg"
-                as={Link}
-                to={`/${user.username}`}
-              >
-                {user.name}
-              </Text>
-              <Text
-                color="gray.500"
-                fontSize="sm"
-                as={Link}
-                to={`/${user.username}`}
-              >
-                {user.username}
-              </Text>
-            </Stack>
-          </Flex>
+              {user.name}
+            </Text>
+            <Text
+              color="gray.500"
+              fontSize="sm"
+              as={Link}
+              to={`/${user.username}`}
+            >
+              {user.username}
+            </Text>
+          </Stack>
         </Flex>
         <Button
-          w={{ md: "full", sm: "auto" }}
-          color={"white"}
+          w={{ base: "full", sm: "auto" }}
+          colorScheme={following ? "gray" : "blue"}
           onClick={handleFollowUnfollow}
           isLoading={updating}
         >
