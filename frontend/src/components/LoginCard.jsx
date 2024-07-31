@@ -112,8 +112,8 @@ function LoginCard() {
                 //     ...inputs,
                 //     username: e.target.value,
                 //   }))
-                }
-              onChange={handleUsernameChange}
+                // }
+                onChange={handleUsernameChange}
               />
             </FormControl>
             <FormControl isRequired>
@@ -128,7 +128,6 @@ function LoginCard() {
                       password: e.target.value,
                     }))
                   }
-                  
                 />
                 <InputRightElement h={"full"}>
                   <Button
