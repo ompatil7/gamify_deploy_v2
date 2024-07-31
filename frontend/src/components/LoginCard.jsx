@@ -107,12 +107,13 @@ function LoginCard() {
               <Input
                 type="text"
                 value={inputs.username}
-                onChange={(e) =>
-                  setInputs((inputs) => ({
-                    ...inputs,
-                    username: e.target.value,
-                  }))
+                // onChange={(e) =>
+                //   setInputs((inputs) => ({
+                //     ...inputs,
+                //     username: e.target.value,
+                //   }))
                 }
+              onChange={handleUsernameChange}
               />
             </FormControl>
             <FormControl isRequired>
@@ -121,13 +122,13 @@ function LoginCard() {
                 <Input
                   type={showPassword ? "text" : "password"}
                   value={inputs.password}
-                  // onChange={(e) =>
-                  //   setInputs((inputs) => ({
-                  //     ...inputs,
-                  //     password: e.target.value,
-                  //   }))
-                  // }
-                  onChange={handleUsernameChange}
+                  onChange={(e) =>
+                    setInputs((inputs) => ({
+                      ...inputs,
+                      password: e.target.value,
+                    }))
+                  }
+                  
                 />
                 <InputRightElement h={"full"}>
                   <Button
