@@ -55,7 +55,7 @@ function App() {
         )}
       </Box>
       <Box position={"relative"} w="full">
-        <Container maxW={{ base: "620px", md: "1200px" }}>
+        <Container maxW={{ base: "620px", md: "1200px" }} pt={20} mt={10}>
           <Header />
           <Routes>
             <Route

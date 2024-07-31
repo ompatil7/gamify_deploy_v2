@@ -1,0 +1,32 @@
+.like-button,
+.comment-button {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.like-button:hover,
+.comment-button:hover {
+  transform: scale(1.2);
+}
+
+.liked {
+  animation: heart-burst 0.6s forwards;
+}
+
+@keyframes heart-burst {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.3);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
