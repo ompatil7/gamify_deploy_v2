@@ -6,6 +6,7 @@ import Post from "../components/Post";
 import { useRecoilState } from "recoil";
 import postsAtom from "../atoms/postsAtom";
 import SuggestedUsers from "../components/SuggestedUsers";
+import { baseUrl } from "../url";
 
 function HomePage() {
   const [posts, setPosts] = useRecoilState(postsAtom);
@@ -17,7 +18,7 @@ function HomePage() {
       setPosts([]);
 
       try {
-        const res = await fetch("/api/posts/feed");
+        const res = await fetch(`${baseUrl}/api/posts/feed`);
         const data = await res.json();
 
         if (data.error) {
