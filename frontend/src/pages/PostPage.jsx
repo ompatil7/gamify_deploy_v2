@@ -22,7 +22,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import userAtom from "../atoms/userAtom";
 import postsAtom from "../atoms/postsAtom";
 import { baseUrl } from "../url";
-
 function PostPage() {
   const { user, loading } = useGetUserProfile();
   // const [post, setPost] = useState(null);
@@ -32,7 +31,6 @@ function PostPage() {
   const [posts, setPosts] = useRecoilState(postsAtom);
   const navigate = useNavigate();
   const currentPost = posts[0];
-
   const handleDeletePost = async () => {
     try {
       // e.preventDefault();
@@ -72,7 +70,6 @@ function PostPage() {
     };
     getPost();
   }, [pid, showToast, setPosts]);
-
   if (!user && loading) {
     return (
       <Flex justifyContent={"center"}>
@@ -84,74 +81,68 @@ function PostPage() {
   if (!currentPost) return null;
 
   return (
-    <Flex justifyContent="center" alignItems="center" minHeight="100vh" p={4}>
-      <Box
-        bg="white"
-        w="full"
-        maxW="600px"
-        p={4}
-        borderRadius="md"
-        boxShadow="md"
-      >
-        <Flex justifyContent="space-between" alignItems="center">
-          <Flex alignItems="center" gap={3}>
-            <Avatar src={user.profilePic} size="md" name={user.username} />
-            <Flex flexDirection="column">
-              <Text fontSize="sm" fontWeight="bold">
-                {user.username}
-              </Text>
-              <Image src="/verified.png" w={4} h={4} />
-            </Flex>
-          </Flex>
-          <Flex gap={4} alignItems="center">
-            <Text fontSize="xs" color="gray.500">
-              {formatDistanceToNow(new Date(currentPost.createdAt))} ago
+    <>
+      <Flex>
+        <Flex w={"full"} alignItems={"center"} gap={3}>
+          <Avatar src={user.profilePic} size={"md"} name={user.username} />
+          <Flex>
+            <Text fontSize={"sm"} fontWeight={"bold"}>
+              {user.username}
             </Text>
-            {currentUser?._id === user._id && (
-              <DeleteIcon
-                size={20}
-                onClick={handleDeletePost}
-                cursor="pointer"
-              />
-            )}
+            <Image src="/verified.png" w={4} h={4} ml={4} />
           </Flex>
         </Flex>
-        <Text my={3}>{currentPost.text}</Text>
-        {currentPost.img && (
-          <Box
-            position="relative"
-            w="full"
-            h="0"
-            pb="56.25%" // 16:9 aspect ratio
-            bg="black"
+        <Flex gap={4} alignItems={"center"}>
+          <Text
+            fontSize={"xs"}
+            width={36}
+            textAlign={"right"}
+            color={"gray.light"}
           >
-            <Image
-              src={currentPost.img}
-              position="absolute"
-              top="0"
-              left="0"
-              w="100%"
-              h="100%"
-              objectFit="contain"
+            {formatDistanceToNow(new Date(currentPost.createdAt))} ago
+          </Text>
+
+          {currentUser?._id === user._id && (
+            <DeleteIcon
+              size={20}
+              onClick={handleDeletePost}
+              cursor={"pointer"}
             />
-          </Box>
-        )}
-        <Flex gap={3} my={3}>
-          <Actions post={currentPost} />
+          )}
+          {/* date */}
         </Flex>
-        <Divider my={4} />
-        {currentPost.replies.map((reply) => (
-          <Comments
-            key={reply._id}
-            reply={reply}
-            lastReply={
-              reply._id ===
-              currentPost.replies[currentPost.replies.length - 1]._id
-            }
-          />
-        ))}
-      </Box>
-    </Flex>
+      </Flex>
+
+      <Text my={3}>{currentPost.text}</Text>
+      {currentPost.img && (
+        <Box
+          borderRadius={6}
+          overflow={"hidden"}
+          border={"1px solid"}
+          borderColor={"gray.light"}
+        >
+          <Image src={currentPost.img} w={"full"} />
+        </Box>
+      )}
+
+      <Flex gap={3} my={3}>
+        <Actions post={currentPost} />
+      </Flex>
+
+      <Divider my={4} />
+      {currentPost.replies.map((reply) => (
+        <Comments
+          key={reply._id}
+          reply={reply}
+          lastReply={
+            reply._id ===
+            currentPost.replies[currentPost.replies.length - 1]._id
+          }
+        />
+      ))}
+
+      {/* comment section */}
+    </>
   );
 }
 
