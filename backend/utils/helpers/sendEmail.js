@@ -16,11 +16,16 @@ const sendEmail = async (to, subject, text) => {
     from: process.env.EMAIL,
     to,
     subject,
-    text,
+
     html,
   };
 
-  await transporter.sendMail(mailOptions);
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully");
+  } catch (error) {
+    console.error("Error sending email:", error);
+  }
 };
 
 export default sendEmail;

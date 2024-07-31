@@ -2,15 +2,19 @@ import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import generateTokenAndSetCookie from "../utils/helpers/generateTokenAndSetCookie.js";
 import { v2 as cloudinary } from "cloudinary";
-import path from "path";
-import fs from "fs";
+
 import { uploadOnCloudinary } from "../utils/helpers/cloudinary.js";
 import mongoose from "mongoose";
 import Post from "../models/postModel.js";
 import Game from "../models/gameModel.js";
 import crypto from "crypto";
 import sendEmail from "../utils/helpers/sendEmail.js";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 //get user
 const getUserProfile = async (req, res) => {
   // We will fetch user profile either with username or userId
@@ -82,10 +86,9 @@ const signUpUser = async (req, res) => {
       // Send welcome email
       const emailTemplatePath = path.join(
         __dirname,
-        "emails/welcomeTemplate.html"
+        "../emails/welcomeTemplate.html"
       );
       let emailTemplate = fs.readFileSync(emailTemplatePath, "utf-8");
-      // Customize the template with user-specific data
       emailTemplate = emailTemplate.replace("{{name}}", name);
       emailTemplate = emailTemplate.replace(
         "{{link}}",
