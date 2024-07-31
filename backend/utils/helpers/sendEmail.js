@@ -1,12 +1,13 @@
 import nodemailer from "nodemailer";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
 import path from "path";
-
 // Get the current directory path
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
+const __dirname = path.dirname(__filename);
+const emailTemplatePath = path.join(
+  __dirname,
+  "../../emails/welcomeTemplate.html"
+);
 const transporter = nodemailer.createTransport({
   service: "gmail",
   host: "smtp.gmail.com",
@@ -27,13 +28,7 @@ const sendEmail = async (to, subject, html) => {
     attachments: [
       {
         filename: "welcomeGamer.jpg",
-        path: path.join(
-          __dirname,
-          "public",
-          "temp",
-          "images",
-          "welcomeGamer.jpg"
-        ), // Local path
+        path: emailTemplatePath, // Local path
         cid: "welcome-gamer", // Same CID as used in the HTML
       },
     ],
