@@ -27,7 +27,13 @@ const sendEmail = async (to, subject, html) => {
     attachments: [
       {
         filename: "welcomeGamer.jpg",
-        path: path.join(__dirname, "public", "images", "welcomeGamer.jpg"), // Local path
+        path: path.join(
+          __dirname,
+          "public",
+          "temp",
+          "images",
+          "welcomeGamer.jpg"
+        ), // Local path
         cid: "welcome-gamer", // Same CID as used in the HTML
       },
     ],
