@@ -17,6 +17,13 @@ const sendEmail = async (to, subject, html) => {
     to,
     subject,
     html,
+    attachments: [
+      {
+        filename: "welcomeGamer.jpg",
+        path: "https://gamify-deploy-v2.onrender.com/public/images/welcomeGamer.jpg", // Adjust the path to your image
+        cid: "welcome-gamer", // Same CID as used in the HTML
+      },
+    ],
   };
 
   try {
