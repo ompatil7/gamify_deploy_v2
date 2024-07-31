@@ -95,8 +95,20 @@ const signUpUser = async (req, res) => {
         "{{link}}",
         "https://gamify-v2.vercel.app"
       );
+      const attachments = [
+        {
+          filename: "welcomeGamer.jpg",
+          path: "https://gamify-deploy-v2.onrender.com/public/temp/images/welcomeGamer.jpg", // Local path
+          cid: "welcome-gamer", // Same CID as used in the HTML
+        },
+      ];
 
-      await sendEmail(newUser.email, "Welcome to Gamify!", emailTemplate);
+      await sendEmail(
+        newUser.email,
+        "Welcome to Gamify!",
+        emailTemplate,
+        attachments
+      );
 
       res.status(201).json({
         _id: newUser._id,
@@ -308,11 +320,16 @@ const forgotPassword = async (req, res) => {
     user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
     await user.save();
-
     const resetUrl = `https://gamify-v2.vercel.app/reset-password/${token}`;
-    const message = `You are receiving this email because you (or someone else) have requested the reset of the password for your account. Please click on the following link, or paste this into your browser to complete the process:\n\n${resetUrl}\n\nIf you did not request this, please ignore this email and your password will remain unchanged.`;
+    const emailTemplatePath = path.join(__dirname, "../emails/forgotPass.html");
+    let emailTemplate = fs.readFileSync(emailTemplatePath, "utf-8");
+    emailTemplate = emailTemplate.replace("{{resetUrl}}", resetUrl);
 
-    await sendEmail(user.email, "Password Reset", message);
+    await sendEmail(user.email, "Password Reset", emailTemplate);
+    // const resetUrl = `https://gamify-v2.vercel.app/reset-password/${token}`;
+    // const message = `You are receiving this email because you (or someone else) have requested the reset of the password for your account. Please click on the following link, or paste this into your browser to complete the process:\n\n${resetUrl}\n\nIf you did not request this, please ignore this email and your password will remain unchanged.`;
+
+    // await sendEmail(user.email, "Password Reset", message);
 
     res.status(200).json({ message: "Email sent" });
   } catch (error) {

@@ -11,19 +11,13 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendEmail = async (to, subject, html) => {
+const sendEmail = async (to, subject, html, attachments = []) => {
   const mailOptions = {
     from: process.env.EMAIL,
     to,
     subject,
     html,
-    attachments: [
-      {
-        filename: "welcomeGamer.jpg",
-        path: "https://gamify-deploy-v2.onrender.com/public/temp/images/welcomeGamer.jpg", // Local path
-        cid: "welcome-gamer", // Same CID as used in the HTML
-      },
-    ],
+    attachments,
   };
 
   try {
