@@ -1,13 +1,5 @@
 import nodemailer from "nodemailer";
-import { fileURLToPath } from "url";
-import path from "path";
-// Get the current directory path
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const emailTemplatePath = path.join(
-  __dirname,
-  "../../emails/welcomeTemplate.html"
-);
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   host: "smtp.gmail.com",
@@ -28,7 +20,7 @@ const sendEmail = async (to, subject, html) => {
     attachments: [
       {
         filename: "welcomeGamer.jpg",
-        path: emailTemplatePath, // Local path
+        path: "https://gamify-deploy-v2.onrender.com/public/temp/images/welcomeGamer.jpg", // Local path
         cid: "welcome-gamer", // Same CID as used in the HTML
       },
     ],
