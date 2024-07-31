@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import path from "path";
 
 // Get the current directory path
 const __filename = fileURLToPath(import.meta.url);

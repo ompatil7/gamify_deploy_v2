@@ -88,6 +88,7 @@ const signUpUser = async (req, res) => {
         __dirname,
         "../emails/welcomeTemplate.html"
       );
+      console.log("path in singup", emailTemplatePath);
       let emailTemplate = fs.readFileSync(emailTemplatePath, "utf-8");
       emailTemplate = emailTemplate.replace("{{name}}", name);
       emailTemplate = emailTemplate.replace(
