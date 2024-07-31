@@ -46,8 +46,8 @@ function Header() {
       mt={6}
       mb="12"
       alignItems="center"
-      boxShadow="md"
-      bg={useColorModeValue("white", "gray.800")}
+      // boxShadow="md"
+      // bg={useColorModeValue("white", "gray.800")}
     >
       {/* // <Flex
     //   justifyContent={"space-between"}
