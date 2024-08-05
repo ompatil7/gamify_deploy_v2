@@ -9,7 +9,8 @@ const generateTokenAndSetCookie = (userId, res) => {
     httpOnly: true, // Prevents client-side JS from accessing the cookie
     secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
     maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Adjusts for cross-site requests
+    sameSite : "lax",
+    // sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Adjusts for cross-site requests
   });
 
   return token;
