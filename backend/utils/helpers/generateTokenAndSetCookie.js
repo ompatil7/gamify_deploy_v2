@@ -7,10 +7,12 @@ const generateTokenAndSetCookie = (userId, res) => {
 
   res.cookie("jwt", token, {
     httpOnly: true, // Prevents client-side JS from accessing the cookie
-    secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
+    secure : true,
+    sameSite : 'None',
+    // secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
     maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
     // sameSite : "lax",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Adjusts for cross-site requests
+    // sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Adjusts for cross-site requests
   });
 
   return token;
