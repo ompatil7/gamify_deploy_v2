@@ -24,12 +24,12 @@ import { useState } from "react";
 
 function App() {
   const user = useRecoilValue(userAtom);
-  const [isNoticeVisible, setIsNoticeVisible] = useState(true);
+  //const [isNoticeVisible, setIsNoticeVisible] = useState(true);
 
   // const { pathname } = useLocation();
   return (
     <ErrorBoundary>
-      <Box position={"relative"} w="full">
+      {/*<Box position={"relative"} w="full">
         {isNoticeVisible && (
           <Box
             bg="yellow.300"
@@ -53,7 +53,7 @@ function App() {
             </Flex>
           </Box>
         )}
-      </Box>
+      </Box>*/}
       <Box position={"relative"} w="full">
         <Container maxW={{ base: "620px", md: "1200px" }}>
           <Header />
